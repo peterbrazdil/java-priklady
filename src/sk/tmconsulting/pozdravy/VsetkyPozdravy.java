@@ -7,6 +7,7 @@ import sk.tmconsulting.pozdravy.slovensky.PozdravSlovensky;
 
 public class VsetkyPozdravy {
     public static void main(String[] args) {
+        // Volame vsetky vypisy, resp. pozdravy konkretnych tied
         PozdravAnglicky.vypis();
         PozdravMadarsky.vypis();
         PozdravNemecky.vypis();
