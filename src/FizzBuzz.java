@@ -16,6 +16,9 @@ pričom nahrádzajú každé číslo deliteľné tromi slovom "fizz" a každé �
 public class FizzBuzz {
     public static void main(String[] args) {
 
+
+
+
         // TODO urobit konzolovy vstup, v ktorom by pouzivatel zadal cisla v tvare napr. 3 8 12 45 98
         Scanner scn = new Scanner(System.in); // Inicializacia skeneru, resp. vstupu cez konzolu
         System.out.println("Zadaj čísla napr. v tvare 3 8 12 45 98");
