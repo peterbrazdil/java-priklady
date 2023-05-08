@@ -14,13 +14,14 @@ slovo quit. Tie na konci vypíšeme. Opakovanie na ArrayList.
 import opakovanie.model.Kniha;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Kniznica {
     public static void main(String[] args) {
         ArrayList<Kniha> vsetkyKnihy = new ArrayList<Kniha>(); // Vytvorime dynamicke pole, teda Arraylist, ktory je novy, teda prazdny
         while (true) {
-            System.out.println("        Menu s možnosťami\n" +
+            System.out.println("\n        Menu s možnosťami\n" +
                     "        -----------------\n" +
                     "       1. Zadaj novú knihu\n" +
                     "       2. Zobraz všetky knihy\n" +
@@ -55,13 +56,54 @@ public class Kniznica {
 
             } else if (menuPolozka.equals("2")) {
                 System.out.println("Vybral si 2");
-                // TODO Vypiste vsetky knihy
+                // Testujeme ci je kniznica, teda vsetky knihy, cize  Array list prazdny  a to cez  metodu isEmpty()
+                if (vsetkyKnihy.isEmpty()) System.out.println("Kniznica je prazdna");
+
                 // Hint: foreach
-                for (Kniha konkretnaKniha:vsetkyKnihy) {
+                for (Kniha konkretnaKniha : vsetkyKnihy) {
                     //System.out.println("Nazov knihy: "+ konkretnaKniha.getNazov());
                     //System.out.println("Autor: " + konkretnaKniha.getAutor());
                     //System.out.println("Rok Vydania: "+ konkretnaKniha.getRokVydania());
                     System.out.println(konkretnaKniha);
+                }
+            } else if (menuPolozka.equals("3")) {
+                try {
+                    //funkcionalita tohto menu je nasledujuca: Zobraz konkretnu knihu (podla indexu)\n
+                    System.out.println("Zadaj index knihy, ktoru chces zobrazit (pozn. od 1 po N)");
+                    int indexKnihy = scn.nextInt(); // od pouzivatela vyzadujeme index knihy, tj. preto scn.nextInt()
+
+                    // Knihy, resp index v Arrayliste implicitne  zacina hodnotou 0, nie 1, preto nizsie pouzijeme syntax indexKnihy-1
+                    Kniha najdenaKniha = vsetkyKnihy.get(indexKnihy - 1); // Tymto zapisom sme ziskali knihu podla jeho indexu
+                    //sout "toto sa vykona?"
+                    System.out.println(najdenaKniha); //Tym, ze v triede Kniha mame metodu toString tak ju mozeme vypisat takto priamo
+                } catch (InputMismatchException e) {
+                    System.out.println("Zadal si pismeno namiesto ciselneho indexu");
+                    // throw new RuntimeException(e);
+
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Zadal si neexistujuce cislo indexu");
+                } catch (Exception e) {
+                    System.out.println("Neznama chyba");
+                }
+            } else if (menuPolozka.equals("4")) {
+                //4. Vymaž konkrétnu knihu (podľa indexu)\n"
+                try {
+                    //funkcionalita tohto menu je nasledujuca: Zobraz konkretnu knihu (podla indexu)\n
+                    System.out.println("Zadaj index knihy, ktoru chces ZMAZAŤ (pozn. od 1 po N)");
+                    int indexKnihy = scn.nextInt(); // od pouzivatela vyzadujeme index knihy, tj. preto scn.nextInt()
+
+                    // Knihy, resp index v Arrayliste implicitne  zacina hodnotou 0, nie 1, preto nizsie pouzijeme syntax indexKnihy-1
+                    Kniha najdenaKniha = vsetkyKnihy.remove(indexKnihy - 1); // Tymto zapisom sme ziskali knihu podla jeho indexu
+                    System.out.println("ZMAZALA sa prave tato kniha: ");
+                    System.out.println(najdenaKniha); //Tym, ze v triede Kniha mame metodu toString tak ju mozeme vypisat takto priamo
+                } catch (InputMismatchException e) {
+                    System.out.println("Zadal si pismeno namiesto ciselneho indexu");
+                    // throw new RuntimeException(e);
+
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Zadal si neexistujuce cislo indexu");
+                } catch (Exception e) {
+                    System.out.println("Neznama chyba");
                 }
 
             } else if (menuPolozka.equalsIgnoreCase("koniec")) {
